@@ -41,6 +41,9 @@ footer {
   margin: 0 0 -2px 0;
   font-size: 30px;
 }
+.city:first-letter {
+  text-transform: capitalize;
+}
 .forecast {
   margin: 0 10px 4px 4px;
   border: 2px solid rgb(0, 152, 252);
