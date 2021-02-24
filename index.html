@@ -1,160 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Weather App</title>
-		<link rel="stylesheet" href="src/style.css" />
-		<link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-			rel="stylesheet"
-			integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-			crossorigin="anonymous"
-		/>
-		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	</head>
-	<body>
-		<div class="container">
-			<div class="row">
-				<div class="col-7">
-					<header>WeatherApp</header>
-					<form id="search-form">
-						<input
-							type="text"
-							class="form-control"
-							placeholder="What's the weather in...?"
-							autocomplete="off"
-							autofocus="on"
-							id="search-city"
-						/>
-						<input
-							type="submit"
-							value="Search"
-							class="change_city"
-							id="submit_localisation"
-						/>
-						<input
-							type="submit"
-							value="Current Location"
-							class="change_city"
-							id="actual_position"
-						/>
-					</form>
-				</div>
-				<div class="col-5">
-					<img src="src/image/pngegg.png" alt="houses" class="houses" />
-				</div>
-			</div>
-			<div class="row">
-				<h1 class="city">Toulouse, France</h1>
-				<p id="date">Monday 28 december, 21:17</p>
-			</div>
-			<div class="row">
-				<div class="col-4">
-					<img src="src/image/pngegg (2).png" alt="flower" class="flowers" />
-				</div>
-				<div class="col-8">
-					<div class="current-weather">
-						<div class="row">
-							<div class="col-4 image">
-								<img
-									src="src/image/rain_heavy.png"
-									alt="rain_heavy"
-									width="105%"
-								/>
-							</div>
-							<div class="col-8">
-								<p id="description">Heavy Rain</p>
-								<div class="row">
-									<div class="col-2">
-										<p id="Temperature">7</p>
-									</div>
-									<div class="col-5">
-										<button class="change_unit celsius" id="celsius">°C</button>
-										<p id="barre">|</p>
-										<button class="change_unit fahrenheit" id="fahrenheit">
-											°F
-										</button>
-									</div>
-									<div class="col-5">
-										<p><span class="feeling" id="feeling">Real feel:3</span></p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<ul>
-								<li id="Pressure"><em>Pressure</em>: 1023 hPa</li>
-								<li id="Humidity"><em>Humidity</em>: 84%</li>
-								<li id="Wind">
-									<em>Wind</em>: 35m/s, 160°
-									<span class="feeling">Gust: 40m/s</span>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div class="futur">
-						<p>6 days forecast</p>
-						<div class="forecast">
-							<div class="row">
-								<div class="col-4">
-									<p>Thursday</p>
-									<img src="src/image/cloudy.png" alt="cloudy" width="64" />
-									<p>7° <span class="minimal">4°</span></p>
-								</div>
-								<div class="col-4">
-									<p>Wednesday</p>
-									<img
-										src="src/image/rain_light.png"
-										alt="rain_light"
-										width="64"
-									/>
-									<p>7° <span class="minimal">5°</span></p>
-								</div>
-								<div class="col-4">
-									<p>Tuesday</p>
-									<img
-										src="src/image/rain_light.png"
-										alt="rain_light"
-										width="64"
-									/>
-									<p>8° <span class="minimal">3°</span></p>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-4">
-									<p>Friday</p>
-									<img
-										src="src/image/partly_cloudy.png"
-										alt="partly_cloudy"
-										width="64"
-									/>
-									<p>6° <span class="minimal">0°</span></p>
-								</div>
-								<div class="col-4">
-									<p>Saturday</p>
-									<img
-										src="src/image/rain_s_cloudy.png"
-										alt="rain_s_cloudy"
-										width="64"
-									/>
-									<p>6° <span class="minimal">-2°</span></p>
-								</div>
-								<div class="col-4">
-									<p>Sunday</p>
-									<img
-										src="src/image/snow_light.png"
-										alt="snow_light"
-										width="64"
-									/>
-									<p>4° <span class="minimal">-1°</span></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<script src="src/index.js"></script>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="src/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-7">
+          <header>WeatherApp</header>
+          <form id="search-form">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="What's the weather in...?"
+              autocomplete="off"
+              autofocus="on"
+              id="search-city"
+            />
+            <input
+              type="submit"
+              value="Search"
+              class="change_city"
+              id="submit_localisation"
+            />
+            <input
+              type="submit"
+              value="Current Location"
+              class="change_city"
+              id="actual_position"
+            />
+          </form>
+        </div>
+        <div class="col-5">
+          <img src="src/image/pngegg.png" alt="houses" class="houses" />
+        </div>
+      </div>
+      <div class="row">
+        <h1 class="city">Toulouse</h1>
+        <p id="date">Wednesday 24 February, 18:05</p>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <img src="src/image/pngegg (2).png" alt="flower" class="flowers" />
+        </div>
+        <div class="col-8">
+          <div class="current-weather">
+            <div class="row">
+              <div class="col-4 image">
+                <img
+                  src="src/image/rain_heavy.png"
+                  alt="rain_heavy"
+                  width="105%"
+                />
+              </div>
+              <div class="col-8">
+                <p id="description">Heavy Rain</p>
+                <div class="row">
+                  <div class="col-2">
+                    <p id="Temperature">7</p>
+                  </div>
+                  <div class="col-5">
+                    <button class="change_unit celsius" id="celsius">°C</button>
+                    <p id="barre">|</p>
+                    <button class="change_unit fahrenheit" id="fahrenheit">
+                      °F
+                    </button>
+                  </div>
+                  <div class="col-5">
+                    <p><span class="feeling" id="feeling">Real feel:3</span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <ul>
+                <li id="Pressure"><em>Pressure</em>: 1023 hPa</li>
+                <li id="Humidity"><em>Humidity</em>: 84%</li>
+                <li id="Wind">
+                  <em>Wind</em>: 35m/s, 160°
+                  <span class="feeling">Gust: 40m/s</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="futur">
+            <p>6 days forecast</p>
+            <div class="forecast">
+              <div class="row">
+                <div class="col-4">
+                  <p>Thursday</p>
+                  <img src="src/image/cloudy.png" alt="cloudy" width="64" />
+                  <p>7° <span class="minimal">4°</span></p>
+                </div>
+                <div class="col-4">
+                  <p>Wednesday</p>
+                  <img
+                    src="src/image/rain_light.png"
+                    alt="rain_light"
+                    width="64"
+                  />
+                  <p>7° <span class="minimal">5°</span></p>
+                </div>
+                <div class="col-4">
+                  <p>Tuesday</p>
+                  <img
+                    src="src/image/rain_light.png"
+                    alt="rain_light"
+                    width="64"
+                  />
+                  <p>8° <span class="minimal">3°</span></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <p>Friday</p>
+                  <img
+                    src="src/image/partly_cloudy.png"
+                    alt="partly_cloudy"
+                    width="64"
+                  />
+                  <p>6° <span class="minimal">0°</span></p>
+                </div>
+                <div class="col-4">
+                  <p>Saturday</p>
+                  <img
+                    src="src/image/rain_s_cloudy.png"
+                    alt="rain_s_cloudy"
+                    width="64"
+                  />
+                  <p>6° <span class="minimal">-2°</span></p>
+                </div>
+                <div class="col-4">
+                  <p>Sunday</p>
+                  <img
+                    src="src/image/snow_light.png"
+                    alt="snow_light"
+                    width="64"
+                  />
+                  <p>4° <span class="minimal">-1°</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
 </html>
