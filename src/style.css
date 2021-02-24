@@ -1,0 +1,109 @@
+body {
+  padding: 50px 0 50px;
+}
+.container {
+  border: 2px ridge #000036;
+  border-radius: 10px;
+  padding: 10px 10px 0 10px;
+  max-width: 570px !important;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: lighter;
+  line-height: 1.5;
+  color: rgb(0, 102, 204);
+  background-image: linear-gradient(to top, #dfe9f3 0%, white 100%);
+}
+header {
+  margin: 5px auto;
+  font-size: 12px;
+}
+ul {
+  list-style: none;
+}
+
+.change_city {
+  border: 1px solid rgb(227, 240, 250);
+  background-color: rgb(227, 240, 250);
+  border-radius: 2px;
+  padding: 1px 1px;
+  font-size: 10px;
+  color: rgb(0, 102, 204);
+  transition: all 200ms ease-in-out;
+}
+
+.form-control {
+  margin-bottom: 5px;
+}
+.city {
+  margin: 0 0 -2px 0;
+  font-size: 30px;
+}
+.forecast {
+  margin: 0 10px 4px 4px;
+  border: 2px solid rgb(0, 152, 252);
+  border-radius: 4px;
+  text-align: center;
+  max-width: 400px;
+}
+.current-weather {
+  max-width: 300px;
+  margin-left: 30px;
+}
+.flowers {
+  display: block;
+  max-width: 100%;
+  float: left;
+}
+
+.houses {
+  display: block;
+  max-width: 80%;
+  float: right;
+  margin: 10px 25px 0 0;
+}
+.futur {
+  color: rgb(0, 152, 252);
+  margin-top: 10px;
+}
+.minimal {
+  color: rgb(95, 96, 210);
+}
+
+.futur p {
+  margin-bottom: 5px;
+}
+.current-weather p {
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.current-weather .col-2 {
+  padding-right: 0;
+}
+.current-weather .col-5 {
+  padding-right: 0;
+  padding-left: 0;
+}
+.feeling {
+  font-size: 9px;
+  font-weight: light;
+}
+.change_unit {
+  display: inline;
+  border: none;
+  color: rgb(0, 102, 204);
+  background-color: transparent;
+  border-radius: 2px;
+  padding: 1px 1px;
+  font-size: 15px;
+}
+.celsius {
+  padding: 1px 0 1px 6px;
+}
+.fahrenheit {
+  padding: 1px 0;
+}
+#barre {
+  display: inline;
+  font-size: 15px;
+}
