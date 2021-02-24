@@ -53,13 +53,14 @@ function displaySubmittedWeather(response) {
   let actualHu = document.querySelector("#Humidity");
   let actualWind = document.querySelector("#Wind");
   let realFeel = document.querySelector("#feeling");
+  let actualIcon = document.querySelector("#icon");
   let temperature = Math.round(response.data.main.temp);
   let pressure = response.data.main.pressure;
   let humidity = response.data.main.humidity;
   let wind = response.data.wind.speed;
   let windDirection = response.data.wind.deg;
   let windGust = response.data.wind.gust;
-  console.log(windGust);
+  let weatherIcon = response.data.weather[0].icon;
   let feelLike = Math.round(response.data.main.feels_like);
   actualTemp.innerHTML = `${temperature}`;
   actualPressure.innerHTML = `<em>Pressure</em>: ${pressure} hPa`;
@@ -72,6 +73,7 @@ function displaySubmittedWeather(response) {
   realFeel.innerHTML = `Real feel: ${feelLike}°C`;
   document.querySelector("#description").innerHTML =
     response.data.weather[0].main;
+  actualIcon.setAttribute("src", `src/image/${weatherIcon}@2x.png`);
 }
 
 function handleSubmit(event) {
@@ -97,6 +99,7 @@ function displayGeolocWeather(response) {
   let actualHu = document.querySelector("#Humidity");
   let actualWind = document.querySelector("#Wind");
   let realFeel = document.querySelector("#feeling");
+  let actualIcon = document.querySelector("#icon");
   let temperature = Math.round(response.data.main.temp);
   let pressure = response.data.main.pressure;
   let humidity = response.data.main.humidity;
@@ -104,6 +107,7 @@ function displayGeolocWeather(response) {
   let windDirection = response.data.wind.deg;
   let windGust = response.data.wind.gust;
   let feelLike = Math.round(response.data.main.feels_like);
+  let weatherIcon = response.data.weather[0].icon;
   actualTemp.innerHTML = `${temperature}`;
   actualPressure.innerHTML = `<em>Pressure</em>: ${pressure} hPa`;
   actualHu.innerHTML = `<em>Humidity</em>: ${humidity}%`;
@@ -115,6 +119,7 @@ function displayGeolocWeather(response) {
   realFeel.innerHTML = `Real feel: ${feelLike}°C`;
   document.querySelector("#description").innerHTML =
     response.data.weather[0].main;
+  actualIcon.setAttribute("src", `src/image/${weatherIcon}@2x.png`);
 }
 function handleGeoloc(position) {
   let lat = position.coords.latitude;
