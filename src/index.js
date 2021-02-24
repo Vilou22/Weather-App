@@ -15,7 +15,7 @@ function currentDate(now) {
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday"
+    "Saturday",
   ];
   let day = days[now.getDay()];
   let months = [
@@ -30,7 +30,7 @@ function currentDate(now) {
     "September",
     "October",
     "November",
-    "December"
+    "December",
   ];
   let month = months[now.getMonth()];
   let year = now.getFullYear();
@@ -47,6 +47,7 @@ let apiUrl = "https://api.openweathermap.org/data/2.5/weather?";
 
 //2.1.Weather in the submitted city
 function displaySubmittedWeather(response) {
+  document.querySelector("#country").innerHTML = response.data.sys.country;
   let actualTemp = document.querySelector("#Temperature");
   let actualPressure = document.querySelector("#Pressure");
   let actualHu = document.querySelector("#Humidity");
@@ -78,7 +79,7 @@ function handleSubmit(event) {
   let searchCity = document.querySelector("#search-city");
   let city = document.querySelector("h1");
   let newCity = searchCity.value;
-  city.innerHTML = `${newCity}`;
+  city.innerHTML = `${newCity}, <span id="country"> FR </span>`;
   axios
     .get(`${apiUrl}q=${newCity}&appid=${apiKey}&units=metric`)
     .then(displaySubmittedWeather);
@@ -90,7 +91,7 @@ searchForm.addEventListener("submit", handleSubmit);
 //2.1.Weather in the current Location
 function displayGeolocWeather(response) {
   let actualcity = document.querySelector("h1");
-  actualcity.innerHTML = `${response.data.name}`;
+  actualcity.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
   let actualTemp = document.querySelector("#Temperature");
   let actualPressure = document.querySelector("#Pressure");
   let actualHu = document.querySelector("#Humidity");
