@@ -54,7 +54,7 @@ function displaySubmittedWeather(response) {
   let actualWind = document.querySelector("#Wind");
   let realFeel = document.querySelector("#feeling");
   let actualIcon = document.querySelector("#icon");
-  let temperature = Math.round(response.data.main.temp);
+  celsiusTemperature = Math.round(response.data.main.temp);
   let pressure = response.data.main.pressure;
   let humidity = response.data.main.humidity;
   let wind = response.data.wind.speed;
@@ -62,7 +62,7 @@ function displaySubmittedWeather(response) {
   let windGust = response.data.wind.gust;
   let weatherIcon = response.data.weather[0].icon;
   let feelLike = Math.round(response.data.main.feels_like);
-  actualTemp.innerHTML = `${temperature}`;
+  actualTemp.innerHTML = `${celsiusTemperature}`;
   actualPressure.innerHTML = `<em>Pressure</em>: ${pressure} hPa`;
   actualHu.innerHTML = `<em>Humidity</em>: ${humidity}%`;
   if (response.data.wind.gust !== undefined) {
@@ -100,15 +100,15 @@ function displayGeolocWeather(response) {
   let actualWind = document.querySelector("#Wind");
   let realFeel = document.querySelector("#feeling");
   let actualIcon = document.querySelector("#icon");
-  let temperature = Math.round(response.data.main.temp);
+  celsiusTemperature = Math.round(response.data.main.temp);
   let pressure = response.data.main.pressure;
   let humidity = response.data.main.humidity;
   let wind = response.data.wind.speed;
   let windDirection = response.data.wind.deg;
   let windGust = response.data.wind.gust;
-  let feelLike = Math.round(response.data.main.feels_like);
+  feelLike = Math.round(response.data.main.feels_like);
   let weatherIcon = response.data.weather[0].icon;
-  actualTemp.innerHTML = `${temperature}`;
+  actualTemp.innerHTML = `${celsiusTemperature}`;
   actualPressure.innerHTML = `<em>Pressure</em>: ${pressure} hPa`;
   actualHu.innerHTML = `<em>Humidity</em>: ${humidity}%`;
   if (response.data.wind.gust !== undefined) {
@@ -135,3 +135,35 @@ function getPosition(event) {
 document
   .querySelector("#actual_position")
   .addEventListener("click", getPosition);
+
+//Unit Conversion
+
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#Temperature");
+  let realElement = document.querySelector("#feeling");
+  celsiusButton.classList.remove("active");
+  fahrenheitButton.classList.add("active");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  let feelLikeFahrenheit = Math.round((feelLike * 9) / 5 + 32);
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+  realElement.innerHTML = `Real feel: ${feelLikeFahrenheit}°F`;
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  celsiusButton.classList.add("active");
+  fahrenheitButton.classList.remove("active");
+  let temperatureElement = document.querySelector("#Temperature");
+  let realElement = document.querySelector("#feeling");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  realElement.innerHTML = `Real feel: ${feelLike}°C`;
+}
+
+let celsiusTemperature = null;
+let feelLike = null;
+let fahrenheitButton = document.querySelector("#fahrenheit");
+fahrenheitButton.addEventListener("click", displayFahrenheitTemperature);
+
+let celsiusButton = document.querySelector("#celsius");
+celsiusButton.addEventListener("click", displayCelsiusTemperature);
