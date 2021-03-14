@@ -50,6 +50,10 @@ footer {
   border-radius: 4px;
   text-align: center;
   max-width: 400px;
+  background-color: rgb(141, 202, 243, 0.2);
+}
+#forecast {
+  padding-top: 4px;
 }
 .current-weather {
   max-width: 300px;
@@ -76,7 +80,8 @@ footer {
 }
 
 .futur p {
-  margin-bottom: 5px;
+  margin-bottom: 1px;
+  margin-top: 2px;
 }
 .current-weather p {
   font-size: 25px;

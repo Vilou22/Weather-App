@@ -41,11 +41,25 @@ let today = new Date();
 let presentDate = document.querySelector("p#date");
 presentDate.innerHTML = currentDate(today);
 
+function formatHours(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${hours}:${minutes}`;
+}
 //2.API
 let apiKey = "776b500871ef1a663e341e6d765c78f1";
 let apiUrl = "https://api.openweathermap.org/data/2.5/weather?";
-
+let apiForecast = "https://api.openweathermap.org/data/2.5/forecast?";
 //2.1.Weather in the submitted city
+function displayforecast(response) {}
 function displaySubmittedWeather(response) {
   document.querySelector("#country").innerHTML = response.data.sys.country;
   let actualTemp = document.querySelector("#Temperature");
@@ -61,7 +75,7 @@ function displaySubmittedWeather(response) {
   let windDirection = response.data.wind.deg;
   let windGust = response.data.wind.gust;
   let weatherIcon = response.data.weather[0].icon;
-  let feelLike = Math.round(response.data.main.feels_like);
+  feelLike = Math.round(response.data.main.feels_like);
   actualTemp.innerHTML = `${celsiusTemperature}`;
   actualPressure.innerHTML = `<em>Pressure</em>: ${pressure} hPa`;
   actualHu.innerHTML = `<em>Humidity</em>: ${humidity}%`;
@@ -75,6 +89,46 @@ function displaySubmittedWeather(response) {
     response.data.weather[0].main;
   actualIcon.setAttribute("src", `src/image/${weatherIcon}@2x.png`);
 }
+function displayForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastElementSecond = document.querySelector("#forecastSecond");
+  forecastElement.innerHTML = null;
+  forecastElementSecond.innerHTML = null;
+  let forecast = null;
+
+  for (let index = 0; index < 3; index++) {
+    forecast = response.data.list[index];
+    forecastElement.innerHTML += `
+                <div class="col-4">
+                  <p>${formatHours(forecast.dt * 1000)}</p>
+                  <img src="src/image/${
+                    forecast.weather[0].icon
+                  }@2x.png"" alt="cloudy" width="64" />
+                  <p>
+                  ${Math.round(forecast.main.temp_max)}° 
+                  <span class="minimal">
+                  ${Math.round(forecast.main.temp_min)}°</span>
+                  </p>
+                </div>
+  `;
+  }
+  for (let index = 3; index < 6; index++) {
+    forecast = response.data.list[index];
+    forecastElement.innerHTML += `
+                <div class="col-4">
+                  <p>${formatHours(forecast.dt * 1000)}</p>
+                  <img src="src/image/${
+                    forecast.weather[0].icon
+                  }@2x.png"" alt="cloudy" width="64" />
+                  <p>
+                  ${Math.round(forecast.main.temp_max)}° 
+                  <span class="minimal">
+                  ${Math.round(forecast.main.temp_min)}°</span>
+                  </p>
+                </div>
+  `;
+  }
+}
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -85,6 +139,9 @@ function handleSubmit(event) {
   axios
     .get(`${apiUrl}q=${newCity}&appid=${apiKey}&units=metric`)
     .then(displaySubmittedWeather);
+  axios
+    .get(`${apiForecast}q=${newCity}&appid=${apiKey}&units=metric`)
+    .then(displayForecast);
 }
 
 let searchForm = document.querySelector("form#search-form");
@@ -93,20 +150,20 @@ searchForm.addEventListener("submit", handleSubmit);
 //2.1.Weather in the current Location
 function displayGeolocWeather(response) {
   let actualcity = document.querySelector("h1");
-  actualcity.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
   let actualTemp = document.querySelector("#Temperature");
   let actualPressure = document.querySelector("#Pressure");
   let actualHu = document.querySelector("#Humidity");
   let actualWind = document.querySelector("#Wind");
   let realFeel = document.querySelector("#feeling");
   let actualIcon = document.querySelector("#icon");
+  actualcity.innerHTML = `${response.data.name}, ${response.data.sys.country}`;
   celsiusTemperature = Math.round(response.data.main.temp);
+  feelLike = Math.round(response.data.main.feels_like);
   let pressure = response.data.main.pressure;
   let humidity = response.data.main.humidity;
   let wind = response.data.wind.speed;
   let windDirection = response.data.wind.deg;
   let windGust = response.data.wind.gust;
-  feelLike = Math.round(response.data.main.feels_like);
   let weatherIcon = response.data.weather[0].icon;
   actualTemp.innerHTML = `${celsiusTemperature}`;
   actualPressure.innerHTML = `<em>Pressure</em>: ${pressure} hPa`;
@@ -127,6 +184,9 @@ function handleGeoloc(position) {
   axios
     .get(`${apiUrl}lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`)
     .then(displayGeolocWeather);
+  axios
+    .get(`${apiForecast}lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`)
+    .then(displayForecast);
 }
 function getPosition(event) {
   event.preventDefault();
